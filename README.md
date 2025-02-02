@@ -74,6 +74,7 @@
   ```
 
 ## Testing
+**Be sure to delete the `src/db/moonbattery-test.db` file between each test run, as this may fail due to MAC address duplicate entries.**
 Run unit tests using Jest:
 ```sh
 npm test

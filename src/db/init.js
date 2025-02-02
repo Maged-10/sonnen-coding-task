@@ -11,9 +11,7 @@ const path = require('path');
  * Uses an in-memory database for tests, otherwise, it loads from a persistent file.
  * @constant {string}
  */
-const dbFile = process.env.NODE_ENV === 'test'
-  ? ':memory:' 
-  : path.join(__dirname, 'moonbattery.db');
+const dbFile = path.join(__dirname, `moonbattery${process.env.NODE_ENV === 'test' ? '-test' : ''}.db`);
 
 /**
  * Establishes a connection to the SQLite database.
