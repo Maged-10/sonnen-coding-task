@@ -1,12 +1,12 @@
 # sonnen-coding-task
 
-## This code is written in Nodejs based on the popularity of nodejs in api-related tasks.
+## I wrote this code in Node.js because it is very popular for API-related tasks and I find myself very comfortable with it. I also chose SQLite for its simplicity and JWT for authentication and authorization because it is straightforward yet effective.
 
 ## Overview
 - **Register Endpoint (`/register`)**: Registers a moonBattery using its unique MAC address and returns a serial number along with a JWT token.
 - **Ping Endpoint (`/ping`)**: Stores the last contact timestamp from the moonBattery.
 - **Configurations Endpoint (`/configurations`)**: Allows moonBatteries to update key-value configuration pairs.
-- **JWT Authentication**: Ensures secure communication between moonBattery and the backend.
+- **JWT Authentication**: Ensures secure communication between moonBattery and the backend. The JWT stores the serial number and the device ID of the MoonBattery as claims when first issued.
 - **SQLite Database**: Used to store registered batteries, pings, and configurations.
 
 ## Security Implementation
