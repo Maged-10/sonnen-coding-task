@@ -1,0 +1,39 @@
+{
+  "name": "sonnen-coding-task",
+  "version": "1.0.0",
+  "description": "Sonnen coding task",
+  "main": "server.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "init-db": "node src/db/init.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "sqlite3": "^5.1.6",
+    "jsonwebtoken": "^9.0.2",
+    "bcrypt": "^5.1.1",
+    "helmet": "^7.1.0",
+    "express-rate-limit": "^7.1.5",
+    "express-validator": "^7.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3",
+    "nodemon": "^3.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Maged-10/sonnen-coding-task.git"
+  },
+  "author": "Khaled Aboualnaga",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Maged-10/sonnen-coding-task/issues"
+  },
+  "homepage": "https://github.com/Maged-10/sonnen-coding-task#readme"
+}
