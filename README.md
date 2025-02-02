@@ -74,8 +74,12 @@
   ```
 
 ## Testing
-**Make sure to pass a non-existent MAC address before launching tests.**
 Run unit tests using Jest:
 ```sh
 npm test
+```
+
+## Generate documentation
+```sh
+npm run docs
 ```

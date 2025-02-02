@@ -12,7 +12,7 @@ const path = require('path');
  * @constant {string}
  */
 const dbFile = process.env.NODE_ENV === 'test'
-  ? ':memory:'  // Use in-memory DB for tests
+  ? ':memory:' 
   : path.join(__dirname, 'moonbattery.db');
 
 /**
