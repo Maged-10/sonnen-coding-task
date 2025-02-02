@@ -23,6 +23,7 @@ class DeviceController {
 
   /**
    * Registers a new device in the database.
+   * JWT Includes the device's serial number and device ID.
    * @param {string} macAddress - The MAC address of the device.
    * @returns {Promise<Object>} Resolves with the generated serial number and a JWT token.
    */
