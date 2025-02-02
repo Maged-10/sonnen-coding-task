@@ -1,11 +1,31 @@
+/**
+ * @fileoverview Controller for handling device-related operations.
+ * Provides methods for device registration, pinging, and configuration updates.
+ */
+
 const jwt = require('jsonwebtoken');
 const db = require('../db/init');
 
+/**
+ * DeviceController class.
+ * Provides methods for interacting with devices in the database, including
+ * registering a device, pinging a device, and updating device configurations.
+ */
 class DeviceController {
+
+  /**
+   * Generates a random serial number for a device.
+   * @returns {string} The generated serial number.
+   */
   generateSerialNumber() {
     return Math.floor(100000 + Math.random() * 900000).toString();
   }
 
+  /**
+   * Registers a new device in the database.
+   * @param {string} macAddress - The MAC address of the device.
+   * @returns {Promise<Object>} Resolves with the generated serial number and a JWT token.
+   */
   async register(macAddress) {
     return new Promise((resolve, reject) => {
       const serialNumber = this.generateSerialNumber();
@@ -31,6 +51,11 @@ class DeviceController {
     });
   }
 
+  /**
+   * Pings a device to update its last contact timestamp.
+   * @param {string} serialNumber - The serial number of the device.
+   * @returns {Promise<Object>} Resolves with a status message and updated last contact timestamp.
+   */
   async ping(serialNumber) {
     return new Promise((resolve, reject) => {
       db.run(
@@ -54,6 +79,14 @@ class DeviceController {
     });
   }
 
+  /**
+   * Updates the configurations of a device.
+   * If a configuration key already exists for the device, it updates the value.
+   * Otherwise, it inserts a new configuration entry.
+   * @param {string} serialNumber - The serial number of the device.
+   * @param {Object} configurations - The configurations to update (key-value pairs).
+   * @returns {Promise<Object>} Resolves with a status message and a list of updated configuration keys.
+   */
   async updateConfigurations(serialNumber, configurations) {
     return new Promise((resolve, reject) => {
       db.get(

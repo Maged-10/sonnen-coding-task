@@ -129,4 +129,7 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+# project-specific
 package-lock.json
+/docs
+*.db

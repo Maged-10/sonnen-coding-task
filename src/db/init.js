@@ -1,15 +1,35 @@
+/**
+ * @fileoverview Initializes the SQLite database and creates necessary tables.
+ * Sets up the connection to the database and defines the structure for devices and configurations.
+ */
+
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 
-const db = new sqlite3.Database(path.join(__dirname, 'moonbattery.db'), (err) => {
-  if (err) {
-    return console.error(err.message);
-  }
-  console.log('Connected to MoonBattery databse');
+/**
+ * Determines the database file path.
+ * Uses an in-memory database for tests, otherwise, it loads from a persistent file.
+ * @constant {string}
+ */
+const dbFile = process.env.NODE_ENV === 'test'
+  ? ':memory:'  // Use in-memory DB for tests
+  : path.join(__dirname, 'moonbattery.db');
+
+/**
+ * Establishes a connection to the SQLite database.
+ * @constant {sqlite3.Database}
+ */
+const db = new sqlite3.Database(dbFile, (err) => {
+  if (err) console.error(err.message);
+  else console.log(`Connected to ${process.env.NODE_ENV === 'test' ? 'in-memory test' : 'MoonBattery'} database`);
 });
 
+// Create tables if they do not exist
 db.serialize(() => {
-  // Devices table
+  /**
+   * Creates the 'devices' table to store device information.
+   * Includes fields for MAC address, serial number, last contact time, and creation timestamp.
+   */
   db.run(`
     CREATE TABLE IF NOT EXISTS devices (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -20,7 +40,10 @@ db.serialize(() => {
     )
   `);
 
-  // Configurations table
+  /**
+   * Creates the 'configurations' table to store device-specific configurations.
+   * Each entry is linked to a device through a foreign key.
+   */
   db.run(`
     CREATE TABLE IF NOT EXISTS configurations (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
